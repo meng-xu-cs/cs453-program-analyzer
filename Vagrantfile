@@ -4,8 +4,8 @@ Vagrant.configure("2") do |config|
 
   # machine
   config.vm.provider "virtualbox" do |v|
-    v.cpus = 2
-    v.memory = 8192
+    v.cpus = 4
+    v.memory = 16384
   end
 
   # provision
@@ -44,6 +44,8 @@ Vagrant.configure("2") do |config|
       git submodule init
       git submodule update
       docker build -t symcc .
+      docker run symcc \
+        bash -c "apt-get update -y && apt-get install -y screen"
       cd -
 
       # all set!

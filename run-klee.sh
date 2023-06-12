@@ -26,4 +26,4 @@ docker run \
     --volume ${PKG}:/test \
     --workdir /test \
     --rm klee \
-    bash
+    bash -c "${CMD}"
