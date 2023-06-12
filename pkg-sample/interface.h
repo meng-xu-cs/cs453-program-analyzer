@@ -3,7 +3,7 @@
 
 /* external interfaces */
 ssize_t read(int fd, void *buffer, size_t count);
-int printf(const char *format, ...);
+int puts(const char *buffer);
 
 /* exposed interfaces */
 inline __attribute__((always_inline))
@@ -12,8 +12,8 @@ ssize_t in(void *buffer, size_t count) {
 }
 
 inline __attribute__((always_inline))
-int out(const char *message) {
-    return printf("%s", message);
+int out(const char *buffer) {
+    return puts(buffer);
 }
 
 void abort(void);
