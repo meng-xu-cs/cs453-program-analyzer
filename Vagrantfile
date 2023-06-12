@@ -52,4 +52,6 @@ Vagrant.configure("2") do |config|
       echo "==== END OF PROVISON ==="
     SHELL
   end
+
+  config.vm.provision "file", source: "workdir", destination: "/home/vagrant/"
 end
