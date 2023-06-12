@@ -14,13 +14,10 @@ CMD=$(cat <<END
     /afl/afl-clang main.c -o ${WKS}/main-afl &&
     symcc main.c -o ${WKS}/main-sym &&
     sysctl -w kernel.core_pattern=core.%e.%p &&
-    screen -dmS afl-0 -- \
+    screen -dmS afl -- \
         /afl/afl-fuzz -M afl-0 -i input -o ${WKS}/output -- ${WKS}/main-afl &&
-    screen -dmS afl-1 -- \
-        /afl/afl-fuzz -S afl-1 -i input -o ${WKS}/output -- ${WKS}/main-afl &&
-    sleep 10 &&
-    symcc_fuzzing_helper -o ${WKS}/output -a afl-1 -n symcc -- ${WKS}/main-sym &&
-    screen -r afl-0
+    sleep 5 &&
+    symcc_fuzzing_helper -v -o ${WKS}/output -a afl-0 -n symcc -- ${WKS}/main-sym
 END
 )
 
