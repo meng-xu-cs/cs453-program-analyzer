@@ -43,9 +43,12 @@ Vagrant.configure("2") do |config|
       git checkout 77bb971
       git submodule init
       git submodule update
-      docker build -t symcc .
-      docker run symcc \
+      docker build -t symcc-base .
+      docker run --name symcc-next \
+        symcc-base \
         bash -c "sudo apt-get update -y && sudo apt-get install -y screen"
+      docker commit symcc-next symcc
+      docker rm symcc-next
       cd -
 
       # all set!
