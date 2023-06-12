@@ -13,7 +13,6 @@ CMD=$(cat <<END
     rm -rf ${WKS} && mkdir ${WKS} &&
     /afl/afl-clang main.c -o ${WKS}/main-afl &&
     symcc main.c -o ${WKS}/main-sym &&
-    sysctl -w kernel.core_pattern=core.%e.%p &&
     screen -dmS afl -- \
         /afl/afl-fuzz -M afl-0 -i input -o ${WKS}/output -- ${WKS}/main-afl &&
     sleep 5 &&

@@ -51,6 +51,9 @@ Vagrant.configure("2") do |config|
       docker rm symcc-next
       cd -
 
+      # tweak settings
+      sysctl -w kernel.core_pattern=core.%e.%p
+
       # all set!
       echo "==== END OF PROVISON ==="
     SHELL

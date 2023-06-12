@@ -12,7 +12,6 @@ WKS=output-afl
 CMD=$(cat <<END
     rm -rf ${WKS} && mkdir ${WKS} &&
     afl-cc main.c -o ${WKS}/main &&
-    sysctl -w kernel.core_pattern=core.%e.%p &&
     afl-fuzz -i input -o ${WKS}/output -- ${WKS}/main
 END
 )
