@@ -21,6 +21,7 @@ Vagrant.configure("2") do |config|
 
       # install: docker
       curl -fsSL https://get.docker.com | sh
+      usermod -aG docker vagrant
 
       # build: afl++
       git clone https://github.com/AFLplusplus/AFLplusplus.git deps/AFLplusplus
