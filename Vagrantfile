@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       git submodule update
       docker build -t symcc .
       docker run symcc \
-        bash -c "apt-get update -y && apt-get install -y screen"
+        bash -c "sudo apt-get update -y && sudo apt-get install -y screen"
       cd -
 
       # all set!
