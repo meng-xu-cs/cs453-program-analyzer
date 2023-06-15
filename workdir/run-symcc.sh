@@ -15,7 +15,7 @@ CMD=$(cat <<END
     symcc main.c -o ${WKS}/main-sym &&
     screen -dmS afl -- \
         /afl/afl-fuzz -M afl-0 -i input -o ${WKS}/output -- ${WKS}/main-afl &&
-    sleep 5 &&
+    while [ ! -d "${WKS}/output" ]; do sleep 1; done &&
     symcc_fuzzing_helper -v -o ${WKS}/output -a afl-0 -n symcc -- ${WKS}/main-sym
 END
 )
