@@ -4,8 +4,11 @@ Vagrant.configure("2") do |config|
 
   # machine
   config.vm.provider "virtualbox" do |v|
+    v.name = "a2-part1-vm"
     v.cpus = 4
-    v.memory = 16384
+    v.memory = 8192
+    v.customize ["modifyvm", :id, "--uart-mode1", "disconnected"]
+    v.customize ["modifyvm", :id, "--uart1", "off"]
   end
 
   # provision
@@ -52,6 +55,7 @@ Vagrant.configure("2") do |config|
       cd -
 
       # tweak settings
+      apt-get purge -y apport
       sysctl -w kernel.core_pattern=core.%e.%p
 
       # all set!
